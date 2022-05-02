@@ -1,0 +1,12 @@
+export const getContacts = (state) => state.contacts.operation;
+
+export const getFilter = (state) => state.contacts.filter;
+
+export const getVisibleContacts = (state) => {
+   const contacts = getContacts(state);
+   const filter = getFilter(state);
+   const getFilterContacts = (contacts) => {
+      return contacts.filter((contact) => contact.name.toLowerCase().includes(filter.toLowerCase()))
+   };
+   return getFilterContacts(contacts);
+}
