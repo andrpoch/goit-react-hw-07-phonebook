@@ -1,20 +1,25 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { combineReducers } from "redux";
-import actions from "./actions";
+import { fetchContacts, addContact,deleteContact } from "redux/apiOperation";
+import { changeFilter } from './actions';
 
-const operation = createReducer([], {
-   [actions.addContact]: (state, action) => [...state, action.payload],
-   [actions.deleteContact]: (state, action) => state.filter(({ id }) => id !== action.payload)
+export const filter = createReducer('', {
+   [changeFilter]: (_, {payload}) => payload,
 });
-const filter = createReducer('', {
-   [actions.changeFilter]: (_, action) => action.payload,
+export const items = createReducer([], {
+   [fetchContacts.fulfilled]: (_, { payload }) => payload,
+   [addContact.fulfilled]: (state, { payload }) => [...state, payload],
+   [deleteContact.fulfilled]: (state, { payload }) => state.filter(({ id }) => id !== payload),
 });
-// const filter = createReducer('', {
-//    [actions.changeFilter]: (state, action) => action.payload,
-// });
+export const loading = createReducer(false, {
+   [fetchContacts.pending]: () => true,
+   [fetchContacts.fulfilled]: () => false,
+   [fetchContacts.rejected]: () => false,
 
-const reducer = combineReducers({
-   operation,
-   filter,
+   [addContact.pending]: () => true,
+   [addContact.fulfilled]: () => false,
+   [addContact.rejected]: () => false,
+
+   [deleteContact.pending]: () => true,
+   [deleteContact.fulfilled]: () => false,
+   [deleteContact.rejected]: () => false,
 });
-export default reducer;

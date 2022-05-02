@@ -2,7 +2,7 @@ import React from "react";
 import s from './FilterSearch.module.css';
 import { useDispatch,useSelector } from 'react-redux'
 import { getFilter } from 'redux/selectors';
-import actions from 'redux/actions';
+import {changeFilter} from 'redux/actions';
 
 export default function Filter() {
    const value = useSelector(getFilter);
@@ -17,7 +17,7 @@ export default function Filter() {
          className={s.input}
          type='text'
          value={value}
-         onChange={(e)=> dispatch(actions.changeFilter(e.target.value))}
+         onChange={(e)=> dispatch(changeFilter(e.target.value))}
       />
       </div>  
    )

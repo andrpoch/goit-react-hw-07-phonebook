@@ -3,12 +3,12 @@ import s from './ContactList.module.css';
 import ContactItem from 'components/ContactItem/ContactItem';
 import { useDispatch,useSelector } from 'react-redux'
 import { getVisibleContacts } from 'redux/selectors';
-import actions from 'redux/actions';
+import {deleteContact} from 'redux/actions';
 
 export default function ContactList() {
    const contacts = useSelector(getVisibleContacts);
    const dispatch = useDispatch();
-   const onDeleteContact = (id) => dispatch(actions.deleteContact(id));
+   const onDeleteContact = (id) => dispatch(deleteContact(id));
    return (
    <div className={s.wrapper}>
    <ul className={s.list}>
