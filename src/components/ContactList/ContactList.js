@@ -6,13 +6,13 @@ import { getVisibleContacts } from 'redux/selectors';
 import {deleteContact} from 'redux/actions';
 
 export default function ContactList() {
-   const contacts = useSelector(getVisibleContacts);
+   const visibleContacts = useSelector(getVisibleContacts);
    const dispatch = useDispatch();
    const onDeleteContact = (id) => dispatch(deleteContact(id));
    return (
    <div className={s.wrapper}>
    <ul className={s.list}>
-      {contacts.map(({ id, name, number }) => (
+      {visibleContacts.map(({ id, name, number }) => (
          <ContactItem
             key={id}
             contactName={name}

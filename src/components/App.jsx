@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from "./ContactList/ContactList";
 import Filter from "./FilterSearch/FilterSearch";
+import Loader from './Loader/Loader';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchContacts } from 'redux/apiOperation';
-import Loader from './Loader/Loader';
 
 export default function App() {
   const isLoading = useSelector((state) => state.contacts.loading);
