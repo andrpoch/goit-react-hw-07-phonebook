@@ -3,7 +3,7 @@ import s from './ContactList.module.css';
 import ContactItem from 'components/ContactItem/ContactItem';
 import { useDispatch,useSelector } from 'react-redux'
 import { getVisibleContacts } from 'redux/selectors';
-import {deleteContact} from 'redux/actions';
+import {deleteContact} from 'redux/apiOperation';
 
 export default function ContactList() {
    const visibleContacts = useSelector(getVisibleContacts);
